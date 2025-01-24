@@ -109,12 +109,6 @@ func BuildCNFT(campaign string, start, end uint64, limit int) error {
 	}
 
 	if limit-remainder > 1 {
-		// k, _ := new(big.Int).SetString("340001765035412692052283126182679685696", 10)
-		// kProof := cell.BeginCell().MustStoreBigInt(k, 256).EndCell()
-		// sk := cell.CreateProofSkeleton()
-		// _, skk, _ := dict.LoadValueWithProof(kProof, sk)
-		// skk.SetRecursive()
-		// proof, _ := dict.AsCell().CreateProof(sk)
 		_, _, err := writeDict(dirOutput, dict, keys)
 		return err
 	}
