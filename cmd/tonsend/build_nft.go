@@ -15,7 +15,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/schollz/progressbar/v3"
 	"github.com/xssnick/tonutils-go/address"
 	"github.com/xssnick/tonutils-go/ton/nft"
 	"github.com/xssnick/tonutils-go/tvm/cell"
@@ -38,7 +37,6 @@ var handlers = map[string]Handle{
 }
 
 func BuildCNFT(campaign string, start, end uint64, limit int) error {
-	bar := progressbar.Default(-1)
 	handler := handlers["default"]
 	fileInput := filepath.Join(fmt.Sprintf("./input/%s.csv", campaign))
 	dirOutput := filepath.Join(fmt.Sprintf("./output/%s", campaign))
@@ -95,9 +93,6 @@ func BuildCNFT(campaign string, start, end uint64, limit int) error {
 		if err != nil {
 			return err
 		}
-
-		// nolint:errcheck
-		bar.Add(1)
 
 		id, addr, metadata, err := handler.RowToNFT(record)
 		if err != nil {
